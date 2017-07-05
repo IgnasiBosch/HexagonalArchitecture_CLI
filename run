@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/app/DIC.php';
+
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+
+$application->add(new App\Task\ListTasksCommand($DIC['Service\Task']));
+$application->add(new App\Task\CreateTaskCommand($DIC['Service\Task']));
+$application->add(new App\Task\ListTasksLikeCommand($DIC['Service\Task']));
+
+$application->run();
